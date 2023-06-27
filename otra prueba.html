@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Villa Carlos Paz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .form-group button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+    }
+
+    .form-group button:hover {
+      background-color: #45a049;
+    }
+
+    .images-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .images-container img {
+      margin: 10px;
+      max-width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Iniciar sesión</h2>
+    <form>
+      <div class="form-group">
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <button type="submit">Ingresar</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="images-container">
+    <img src="villacarlosp.jpg" alt="Villa Carlos Paz">
+    <img src="villa_carlos_paz_2.jpg" alt="Villa Carlos Paz">
+    <img src="villa_carlos_paz_3.jpg" alt="Villa Carlos Paz">
+  </div>
+</body>
+</html>
