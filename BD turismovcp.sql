@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS turismovcp;
+  DROP DATABASE IF EXISTS turismovcp;
 
 CREATE DATABASE IF NOT EXISTS turismovcp;
 
@@ -12,18 +12,14 @@ gmail VARCHAR (30) NOT NULL,
     PRIMARY KEY (dni));
     
 CREATE TABLE alojamiento
-	( tipo_de_alojamiento VARCHAR (200),
-     descripcion VARCHAR (200),
+	(descripcion VARCHAR (200),
     costo FLOAT,
     imagenes VARCHAR (15),
-    id_alojamiento INT AUTO_INCREMENT,
+    id_alojamiento INT,
     PRIMARY KEY (id_alojamiento));
      
 CREATE TABLE lugares
-	
-	( nombre_del_lugar VARCHAR (30),
-      tipo_de_lugares VARCHAR(20),
-     id_lugares INT AUTO_INCREMENT,
+	(id_lugares INT,
 	informacion VARCHAR(250) NOT NULL,
 	imagenes VARCHAR(20),
     esta_al_aire_libre boolean,
@@ -33,11 +29,12 @@ CREATE TABLE visita
 	(id_alojamiento INT,
     fecha DATE,
     dni INT,
-     id_visita  INT AUTO_INCREMENT,
+     id_visita INT,
+     id_cliente INT,
     id_lugares INT,
     PRIMARY KEY (id_visita),
-	FOREIGN KEY (dni)	 
-      REFERENCES usuario (dni),
+    FOREIGN KEY (id_alojamiento) 
+		REFERENCES alojamiento (id_alojamiento),
 	FOREIGN KEY (id_lugares)
 		REFERENCES lugares(id_lugares));
         
@@ -48,30 +45,31 @@ VALUES ("Valentina", "Perez",12345678, "Valentinaperez@gmail.com"),
     ("Gaston", "Sanches", 34567892, "Gastonsanches@gmail.com"),
     ("Marco", "Ponce", 34567891, "Marcoponce@gmail.com"),
     ("Rafael", "Ramirez", 34567893, "Rafaelramirez@gmail.com"),
-    ("Ivan", "Quiroga", 34567894, "Ivanquiroga@gmail.com");
+    ("Ivan", "Quiroga", 34567894, "Ivanquiroga@gmail.com"),
     
 
-INSERT INTO alojamiento (tipo_de_alojamiento, descripcion, costo,imagenes)
-VALUES ("casa", "dos dormitorios cocina livin comedor dos baños y pieta",12000,"casa1.png" ),
-	("departamento", "con pileta cocina living",30000, "departamento.jpg"),
-    ("cabaña", " dos habitacines cocina dos baños", 40000, "cabaña.jpg"),
-    ("hotel", "dos habitaciones pileta climatisada", 12000, "hotel.jpg"),
-    ("casa", "dos habitaciones cocina living comedor" ,30000, "casa.jpg"),
-    ("cabaña", "dos habitaciones cocina living comedor" ,30009, "casa4.jpg");
+INSERT INTO producto (nombre, color)
+VALUES ("Mesa", "Marrón"),
+	("Silla", "Marrón"),
+    ("Repisa", "Negro"),
+    ("Biblioteca", "Marrón oscuro"),
+    ("Reposera", "Celeste");
 
+INSERT INTO cliente (dni, nombre, fecha_nac, id_pais)
+VALUES (23323490, "Juan", "2003-03-12", 1),
+	(29453998, "Sara", "2005-07-05", 3),
+    (12384829, "Renata", "1989-04-23", 2),
+    (19344233, "Estanislao", "1998-02-28", 1),
+    (32849388, "Edson", "2004-04-30", 2);
 
-INSERT INTO lugares (nombre_del_lugar, tipo_de_lugares, informacion, imagenes, esta_al_aire_libre)
-VALUES ("playas de oro", "balneario", " es un rio donde la gente disfruta de los dias lindo", "rio.jpg1", true),
-	( "centro", "ciudad", "es un lugar donde la gente va hacer comparas", "centro.jpg", true),
-    ("cucu", "monumento", "lugar turisto situado en el centro viejo", "cucu.jpg" , true),
-    ("el burrito", "monumento", "estatua de un burro que la gente visita como lugar turistico", "burrito.jpg", true),
-    ("galeria estrada", "galeia comercial", "se encuentra en el centro y la gente va a comparar ", "estrada.jpg", false),
-    ("La aerosilla", "excursion", "lagente va a pasear y conocer la ciudad","aerosilla.jpg",true);
-
-INSERT INTO visita ( fecha, dni, id_lugares)
-VALUES ( "2020-07-04", 12345678, "1" ),
-	( "2020-06-12",23456789, "2"),
-    ("2020-05-12", 34567899, "3"),
-    ( "2020-08-23", 34567892,"4"),
-    ( "2020-09-01", 34567891, "5"),
-    ( "2020-02-05", 34567893, "6");
+INSERT INTO compra (cantidad, fecha_compra, id_producto, id_cliente)
+VALUES (2, "2020-07-04", 2, 29453998),
+	(1, "2020-06-12", 1, 12384829),
+    (6, "2020-06-12", 2, 12384829),
+    (2, "2020-06-23", 3, 23323490),
+    (4, "2020-07-01", 2, 32849388),
+    (3, "2020-07-05", 4, 12384829),
+    (1, "2020-07-21", 1, 29453998),
+    (4, "2020-05-03", 5, 19344233),
+    (5, "2020-08-31", 2, 19344233),
+    (1, "2020-08-31", 1, 23323490);
